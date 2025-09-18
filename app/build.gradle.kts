@@ -56,4 +56,13 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+
+//    implementation(libs.retrofit)
+//    implementation(libs.androidx.lifecycle.viewmodel.ktx)
+//    implementation(libs.retrofit.v290)
+//    implementation(libs.convertor.gson)
+
+    implementation("com.squareup.retrofit2:retrofit:3.0.0")
+    implementation("com.squareup.retrofit2:converter-gson:3.0.0")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.9.3")
 }

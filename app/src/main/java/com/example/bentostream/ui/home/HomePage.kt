@@ -1,4 +1,8 @@
 package com.example.bentostream.ui.home
 
-class HomePage {
+import androidx.compose.runtime.Composable
+
+@Composable
+fun HomePage() {
+
 }
