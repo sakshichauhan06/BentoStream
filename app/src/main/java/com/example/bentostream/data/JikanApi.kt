@@ -4,5 +4,5 @@ import retrofit2.http.GET
 
 interface JikanApi {
     @GET("anime")
-    suspend fun getAnimes(): List<AnimeData>
+    suspend fun getAnimes(): AnimeResponse
 }
