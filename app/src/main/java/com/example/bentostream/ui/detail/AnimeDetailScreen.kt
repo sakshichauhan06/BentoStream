@@ -66,11 +66,11 @@ fun AnimeDetailScreen(
             )
 
             // Trailer Section
-            if (!it.trailer.embed_url.isNullOrEmpty()) {
-                TrailerSection(trailerUrl = it.trailer.embed_url)
+            if (!it.trailer.youtube_id.isNullOrEmpty()) {
+                TrailerSection(trailerUrl = "https://www.youtube.com/watch?v=${it.trailer.youtube_id}")
             }
         }
     } ?: run {
-        Text("Anime not found")
+        Text("Loading...")
     }
 }
