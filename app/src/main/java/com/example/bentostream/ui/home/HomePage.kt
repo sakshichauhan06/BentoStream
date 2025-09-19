@@ -6,6 +6,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
 import com.example.bentostream.AnimeViewModel
 import com.example.bentostream.AnimeViewModelFactory
 import com.example.bentostream.data.AnimeRepository
@@ -14,7 +15,7 @@ import com.example.bentostream.data.RetrofitInstance
 
 
 @Composable
-fun HomePage() {
+fun HomePage(navController: NavController) {
 
     val repository = AnimeRepository(RetrofitInstance.jikanApi)
     val viewModel: AnimeViewModel = viewModel(
@@ -24,7 +25,9 @@ fun HomePage() {
 
     LazyColumn {
         items(animeList) { anime ->
-            AnimeItem(anime)
+            AnimeItem(anime) { animeId ->
+                navController.navigate("detail/$animeId")
+            }
         }
     }
 

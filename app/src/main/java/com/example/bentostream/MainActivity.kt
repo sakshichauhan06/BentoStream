@@ -12,10 +12,17 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.NavType
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.example.bentostream.data.AnimeRepository
 import com.example.bentostream.data.RetrofitInstance
+import com.example.bentostream.ui.detail.AnimeDetailScreen
 import com.example.bentostream.ui.home.HomePage
 import com.example.bentostream.ui.theme.BentoStreamTheme
+
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,8 +31,30 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             BentoStreamTheme {
-                HomePage()
+                BentoStream()
             }
+        }
+    }
+}
+
+@Composable
+fun BentoStream() {
+    val navController = rememberNavController()
+
+    NavHost(
+        navController = navController,
+        startDestination = "home"
+    ) {
+        composable("home") {
+            HomePage(navController)
+        }
+
+        composable(
+            route = "detail/{animeId}",
+            arguments = listOf(navArgument("animeId") { type = NavType.IntType })
+        ) { backStackEntry ->
+            val animeId = backStackEntry.arguments?.getInt("animeId") ?: 0
+            AnimeDetailScreen(animeId = animeId, navController = navController)
         }
     }
 }

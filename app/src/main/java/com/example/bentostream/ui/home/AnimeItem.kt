@@ -1,6 +1,7 @@
 package com.example.bentostream.ui.home
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -30,14 +31,19 @@ import com.example.bentostream.data.AnimeData
 import com.example.bentostream.data.Genre
 import com.example.bentostream.data.Images
 import com.example.bentostream.data.Jpg
+import com.example.bentostream.data.Trailer
 
 
 @OptIn(ExperimentalGlideComposeApi::class)
 @Composable
-fun AnimeItem(anime: AnimeData) {
+fun AnimeItem(
+    anime: AnimeData,
+    onItemClick: (Int) -> Unit
+) {
     Row(
         modifier = Modifier
             .padding(10.dp)
+            .clickable { onItemClick(anime.mal_id) }
     ) {
         GlideImage(
             model = anime.images.jpg.image_url,
@@ -130,11 +136,10 @@ fun AnimeItemPreview() {
             Genre(mal_id = 3, name = "Shounen")
         ),
         title_english = "Naruto",
-        title_japanese = "ナルト"
+        title_japanese = "ナルト",
+        synopsis = "A story about Naruto becoming Hokage",
+        trailer = Trailer("", "", "")
     )
 
-    AnimeItem(sampleAnime)
+    AnimeItem(sampleAnime) { }
 }
-
-
-

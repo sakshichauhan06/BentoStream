@@ -69,6 +69,7 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.2")
     implementation("com.github.bumptech.glide:compose:1.0.0-beta01")
     implementation("androidx.compose.ui:ui-text-google-fonts:1.9.1")
+    implementation("androidx.navigation:navigation-compose:2.9.4")
 
 
 }
