@@ -11,6 +11,9 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.ViewModelProvider
+import com.example.bentostream.data.AnimeRepository
+import com.example.bentostream.data.RetrofitInstance
 import com.example.bentostream.ui.home.HomePage
 import com.example.bentostream.ui.theme.BentoStreamTheme
 
@@ -18,6 +21,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+
         setContent {
             BentoStreamTheme {
                 HomePage()

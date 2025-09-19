@@ -11,7 +11,6 @@ import kotlinx.coroutines.launch
 
 class AnimeViewModel(private val repository: AnimeRepository): ViewModel() {
     private val _animes = MutableStateFlow<List<AnimeData>>(emptyList())
-
     val animes: StateFlow<List<AnimeData>> = _animes
 
     init {
@@ -21,8 +20,8 @@ class AnimeViewModel(private val repository: AnimeRepository): ViewModel() {
     fun fetchAnimes() {
         viewModelScope.launch {
             try {
-                val response = RetrofitInstance.jikanApi.getAnimes()
-                _animes.value = response.data
+                val response = repository.getAnimes()
+                _animes.value = response
             } catch (e: Exception) {
                 println("Error fetching animes: ${e.message}")
             }
