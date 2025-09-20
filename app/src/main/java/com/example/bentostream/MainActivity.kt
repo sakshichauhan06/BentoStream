@@ -27,7 +27,7 @@ import com.example.bentostream.ui.theme.BentoStreamTheme
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
+//        enableEdgeToEdge()
 
         setContent {
             BentoStreamTheme {
