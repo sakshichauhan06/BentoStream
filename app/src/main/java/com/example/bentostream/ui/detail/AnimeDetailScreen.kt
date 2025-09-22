@@ -44,8 +44,8 @@ fun AnimeDetailScreen(
                 .fillMaxSize()
                 .verticalScroll(rememberScrollState())
         ) {
-            // Reuse your AnimeItem
-            AnimeItem(anime = it, onItemClick = { }) // no click inside detail
+            // Basic info about Anime
+            AnimeItemDetail(anime = it) // no click inside detail
 
             // Synopsis
             Text(
