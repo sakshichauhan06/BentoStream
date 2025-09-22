@@ -56,23 +56,7 @@ fun AnimeDetailScreen(
                 AnimeItemDetail(anime = it) // no click inside detail
 
                 // Synopsis
-                Text(
-                    text = "Synopsis:",
-//                style = TextStyle(
-//                    fontSize = 18.sp,
-//                    fontWeight = FontWeight.Bold
-//                ),
-                    modifier = Modifier
-                        .padding(8.dp)
-                )
-                Text(
-                    text = it.synopsis,
-//                style = TextStyle(
-//                    fontSize = 15.sp,
-//                ),
-                    modifier = androidx.compose.ui.Modifier
-                        .padding(horizontal = 8.dp, vertical = 4.dp)
-                )
+                SynopsisSection(anime)
 
                 // Trailer Section
                 if (!it.trailer.youtube_id.isNullOrEmpty()) {
