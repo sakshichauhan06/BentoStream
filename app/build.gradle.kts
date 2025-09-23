@@ -68,7 +68,7 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.9.4")
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.2")
     implementation("com.github.bumptech.glide:compose:1.0.0-beta01")
-    implementation("androidx.compose.ui:ui-text-google-fonts:1.9.1")
+    implementation("androidx.compose.ui:ui-text-google-fonts:1.9.0")
     implementation("androidx.navigation:navigation-compose:2.9.4")
     implementation("androidx.compose.material3:material3:1.3.2")
     implementation("com.google.accompanist:accompanist-systemuicontroller:0.36.0")
