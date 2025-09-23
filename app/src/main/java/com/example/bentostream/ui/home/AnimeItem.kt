@@ -1,10 +1,8 @@
 package com.example.bentostream.ui.home
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
@@ -14,11 +12,8 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.BlendMode.Companion.Color
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.layout.ModifierLocalBeyondBoundsLayout
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -32,6 +27,7 @@ import com.example.bentostream.data.Genre
 import com.example.bentostream.data.Images
 import com.example.bentostream.data.Jpg
 import com.example.bentostream.data.Trailer
+import com.example.bentostream.data.TrailerImages
 
 
 @OptIn(ExperimentalGlideComposeApi::class)
@@ -138,7 +134,18 @@ fun AnimeItemPreview() {
         title_english = "Naruto",
         title_japanese = "ナルト",
         synopsis = "A story about Naruto becoming Hokage",
-        trailer = Trailer("", "", "")
+        trailer = Trailer(
+            youtube_id = "QczGoCmX-pI", // Example trailer
+            url = "https://www.youtube.com/watch?v=QczGoCmX-pI",
+            embed_url = "https://www.youtube.com/embed/QczGoCmX-pI",
+            images = TrailerImages(
+                image_url = "https://img.youtube.com/vi/QczGoCmX-pI/0.jpg",
+                small_image_url = null,
+                medium_image_url = null,
+                large_image_url = null,
+                maximum_image_url = null
+            )
+        )
     )
 
     AnimeItem(sampleAnime) { }

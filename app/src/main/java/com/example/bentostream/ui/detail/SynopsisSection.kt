@@ -41,14 +41,28 @@ fun SynopsisSection(
         Text(
             text = anime.synopsis,
             fontSize = 14.sp,
-            modifier = Modifier.padding(top = 8.dp)
+            modifier = Modifier.padding(12.dp)
         )
     }
 }
 
-@Preview
-@Composable
-fun SynopsisSectionPreview() {
-    val fakeSynopsis = "Naruto Uzumaki, a hyperactive ninja, seeks recognition and dreams of becoming Hokage."
-//    SynopsisSection()
-}
+//@Preview(showBackground = true)
+//@Composable
+//fun SynopsisSectionPreview() {
+//    val fakeAnime = AnimeData(
+//        mal_id = 1,
+//        title = "Naruto",
+//        episodes = 220,
+//        score = 8.5,
+//        scored_by = 1000,
+//        images = null, // you can put null if not needed for preview
+//        genres = emptyList(),
+//        title_english = "Naruto",
+//        title_japanese = "ナルト",
+//        synopsis = "Naruto Uzumaki, a hyperactive ninja, seeks recognition and dreams of becoming Hokage.",
+//        trailer = null // put null if not needed for preview
+//    )
+//
+//    SynopsisSection(anime = fakeAnime)
+//}
+

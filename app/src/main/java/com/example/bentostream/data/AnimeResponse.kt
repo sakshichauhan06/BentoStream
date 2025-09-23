@@ -1,7 +1,5 @@
 package com.example.bentostream.data
 
-import android.provider.MediaStore
-
 data class AnimeResponse(
     val data: List<AnimeData>
 )
@@ -36,5 +34,14 @@ data class Genre(
 data class Trailer(
     val youtube_id: String,
     val url: String,
-    val embed_url: String
+    val embed_url: String,
+    val images: TrailerImages?,
+)
+
+data class TrailerImages(
+    val image_url: String?,
+    val small_image_url: String?,
+    val medium_image_url: String?,
+    val large_image_url: String?,
+    val maximum_image_url: String?
 )

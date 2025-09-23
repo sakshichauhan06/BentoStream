@@ -17,14 +17,19 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.example.bentostream.AnimeViewModel
 import com.example.bentostream.AnimeViewModelFactory
+import com.example.bentostream.data.AnimeData
 import com.example.bentostream.data.AnimeRepository
+import com.example.bentostream.data.Genre
+import com.example.bentostream.data.Images
+import com.example.bentostream.data.Jpg
 import com.example.bentostream.data.RetrofitInstance
+import com.example.bentostream.data.Trailer
+import com.example.bentostream.data.TrailerImages
 import com.example.bentostream.ui.AppHeader
 import com.example.bentostream.ui.home.AnimeItem
-import com.example.bentostream.ui.detail.TrailerSection
-import java.time.format.TextStyle
 
 @Composable
 fun AnimeDetailScreen(
@@ -75,7 +80,7 @@ fun AnimeDetailScreen(
 @Composable
 fun AnimeDetailScreenPreview() {
     // Fake anime data for preview
-    val fakeAnime = com.example.bentostream.data.AnimeData(
+    val fakeAnime = AnimeData(
         mal_id = 1,
         title = "Naruto",
         title_english = "Naruto",
@@ -83,33 +88,37 @@ fun AnimeDetailScreenPreview() {
         episodes = 220,
         score = 8.2,
         scored_by = 1200000,
-        images = com.example.bentostream.data.Images(
-            jpg = com.example.bentostream.data.Jpg("https://cdn.myanimelist.net/images/anime/13/17405.jpg")
+        images = Images(
+            jpg = Jpg("https://cdn.myanimelist.net/images/anime/13/17405.jpg")
         ),
         genres = listOf(
-            com.example.bentostream.data.Genre(1, "Action"),
-            com.example.bentostream.data.Genre(2, "Adventure")
+            Genre(1, "Action"),
+            Genre(2, "Adventure")
         ),
         synopsis = "Naruto Uzumaki, a hyperactive ninja, seeks recognition and dreams of becoming Hokage.",
-        trailer = com.example.bentostream.data.Trailer(
+        trailer = Trailer(
             youtube_id = "QczGoCmX-pI", // Example trailer
             url = "https://www.youtube.com/watch?v=QczGoCmX-pI",
-            embed_url = "https://www.youtube.com/embed/QczGoCmX-pI"
+            embed_url = "https://www.youtube.com/embed/QczGoCmX-pI",
+            images = TrailerImages(
+                image_url = "https://img.youtube.com/vi/QczGoCmX-pI/0.jpg",
+                small_image_url = null,
+                medium_image_url = null,
+                large_image_url = null,
+                maximum_image_url = null
+            )
         )
     )
 
-    // Mock NavController (for preview only)
-    val navController = androidx.navigation.compose.rememberNavController()
+    val navController = rememberNavController()
 
     Column(
         modifier = Modifier
             .fillMaxSize()
             .verticalScroll(rememberScrollState())
     ) {
-        // Show AnimeItem
-        com.example.bentostream.ui.home.AnimeItem(anime = fakeAnime, onItemClick = {})
+        AnimeItem(anime = fakeAnime, onItemClick = {})
 
-        // Synopsis
         Text(
             text = "Synopsis:",
             fontSize = 18.sp,
@@ -122,8 +131,6 @@ fun AnimeDetailScreenPreview() {
             modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp)
         )
 
-        // Trailer Section
         TrailerSection(trailerUrl = "https://www.youtube.com/watch?v=${fakeAnime.trailer.youtube_id}")
     }
 }
-

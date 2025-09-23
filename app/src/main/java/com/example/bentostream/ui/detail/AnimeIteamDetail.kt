@@ -1,17 +1,17 @@
 package com.example.bentostream.ui.detail
 
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Star
-import androidx.compose.material3.Divider
-import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -19,7 +19,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.buildAnnotatedString
@@ -30,6 +29,7 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.compose.rememberNavController
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.bumptech.glide.integration.compose.GlideImage
 import com.example.bentostream.data.AnimeData
@@ -37,6 +37,8 @@ import com.example.bentostream.data.Genre
 import com.example.bentostream.data.Images
 import com.example.bentostream.data.Jpg
 import com.example.bentostream.data.Trailer
+import com.example.bentostream.data.TrailerImages
+import com.example.bentostream.ui.home.AnimeItem
 
 @OptIn(ExperimentalGlideComposeApi::class)
 @Composable
@@ -207,27 +209,60 @@ fun AnimeItemDetail(
 @Preview(showBackground = true)
 @Composable
 fun AnimeItemDetailPreview() {
+    // Fake anime data for preview
     val sampleAnime = AnimeData(
         mal_id = 1,
         title = "Naruto",
-        episodes = 220,
-        score = 8.5,
-        scored_by = 1000,
-        images = Images(
-            jpg = Jpg(
-                image_url = "https://cdn.myanimelist.net/images/anime/1015/138006.jpg"
-            )
-        ),
-        genres = listOf(
-            Genre(mal_id = 1, name = "Action"),
-            Genre(mal_id = 2, name = "Adventure"),
-            Genre(mal_id = 3, name = "Shounen")
-        ),
         title_english = "Naruto",
         title_japanese = "ナルト",
-        synopsis = "A story about Naruto becoming Hokage",
-        trailer = Trailer("", "", "")
+        episodes = 220,
+        score = 8.2,
+        scored_by = 1200000,
+        images = Images(
+            jpg = Jpg("https://cdn.myanimelist.net/images/anime/13/17405.jpg")
+        ),
+        genres = listOf(
+            Genre(1, "Action"),
+            Genre(2, "Adventure")
+        ),
+        synopsis = "Naruto Uzumaki, a hyperactive ninja, seeks recognition and dreams of becoming Hokage.",
+        trailer = Trailer(
+            youtube_id = "QczGoCmX-pI", // Example trailer
+            url = "https://www.youtube.com/watch?v=QczGoCmX-pI",
+            embed_url = "https://www.youtube.com/embed/QczGoCmX-pI",
+            images = TrailerImages(
+                image_url = "https://img.youtube.com/vi/QczGoCmX-pI/0.jpg",
+                small_image_url = null,
+                medium_image_url = null,
+                large_image_url = null,
+                maximum_image_url = null
+            )
+        )
     )
+
+    val navController = rememberNavController()
+
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .verticalScroll(rememberScrollState())
+    ) {
+        AnimeItem(anime = sampleAnime, onItemClick = {})
+
+        Text(
+            text = "Synopsis:",
+            fontSize = 18.sp,
+            fontWeight = FontWeight.Bold,
+            modifier = Modifier.padding(8.dp)
+        )
+        Text(
+            text = sampleAnime.synopsis,
+            fontSize = 15.sp,
+            modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp)
+        )
+
+        TrailerSection(trailerUrl = "https://www.youtube.com/watch?v=${sampleAnime.trailer.youtube_id}")
+    }
 
     AnimeItemDetail(sampleAnime)
 }
