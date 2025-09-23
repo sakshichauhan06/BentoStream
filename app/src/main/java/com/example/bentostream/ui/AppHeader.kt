@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
@@ -35,6 +36,7 @@ fun AppHeader() {
         },
         colors = TopAppBarDefaults.topAppBarColors(
             containerColor = Color(0xFF4455A2)
-        )
+        ),
+        modifier = Modifier.statusBarsPadding()
     )
 }

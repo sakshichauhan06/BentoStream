@@ -54,13 +54,13 @@ fun BentoStreamTheme(
 
     // status bar color
     val systemUiController = rememberSystemUiController()
-    LaunchedEffect(systemUiController, darkTheme) {
+    LaunchedEffect(systemUiController) {
         systemUiController.setStatusBarColor(
-            color = colorScheme.primary,
-            darkIcons = !darkTheme,
-            transformColorForLightContent = { it }
+            color = Color(0xFF4455A2),
+            darkIcons = false
         )
     }
+
 
     MaterialTheme(
         colorScheme = colorScheme,

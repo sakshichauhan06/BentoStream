@@ -72,6 +72,7 @@ dependencies {
     implementation("androidx.navigation:navigation-compose:2.9.4")
     implementation("androidx.compose.material3:material3:1.3.2")
     implementation("com.google.accompanist:accompanist-systemuicontroller:0.36.0")
+    implementation("androidx.compose.foundation:foundation:1.9.1")
 
 
 }
