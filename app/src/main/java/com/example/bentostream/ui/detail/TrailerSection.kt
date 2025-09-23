@@ -54,17 +54,29 @@ fun TrailerSection(trailerUrl: String?) {
         if (videoId.isNotEmpty()) {
             val thumbnailUrl = "https://img.youtube.com/vi/$videoId/0.jpg"
 
-            GlideImage(
-                model = thumbnailUrl,
-                contentDescription = "Trailer Thumbnail",
+            Box(
                 modifier = Modifier
                     .padding(12.dp)
-                    .clickable {
+                    .clickable{
                         val intent = Intent(Intent.ACTION_VIEW, Uri.parse(trailerUrl))
                         context.startActivity(intent)
                     }
-                    .size(width = 473.dp, height = 258.dp)
-            )
+                    .size(width = 473.dp, height = 258.dp),
+                contentAlignment = Alignment.Center
+            ) {
+                GlideImage(
+                    model = thumbnailUrl,
+                    contentDescription = "Trailer Thumbnail",
+                    modifier = Modifier.matchParentSize()
+                )
+
+                Image(
+                    painter = androidx.compose.ui.res.painterResource(id = android.R.drawable.ic_media_play),
+                    contentDescription = "Play Button",
+                    modifier = Modifier.size(48.dp)
+
+                )
+            }
         }
     }
 }
