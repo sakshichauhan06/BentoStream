@@ -1,22 +1,29 @@
 package com.example.bentostream.ui.home
 
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -38,27 +45,27 @@ fun AnimeItem(
 ) {
     Row(
         modifier = Modifier
-            .padding(10.dp)
-            .clickable { onItemClick(anime.mal_id) }
+            .padding(12.dp)
+            .clickable { onItemClick(anime.mal_id) },
     ) {
         GlideImage(
             model = anime.images.jpg.image_url,
             contentDescription = anime.title,
             modifier = Modifier
                 .padding(4.dp)
-                .width(180.dp)
-                .height(298.dp),
+                .width(107.dp)
+                .height(151.dp),
             contentScale = ContentScale.Crop
         )
         Column(
             modifier = Modifier
-                .padding(horizontal = 4.dp)
+                .padding(12.dp),
         ) {
             // Title
             Text(
                 text = anime.title,
                 style = TextStyle(
-                    fontSize = 18.sp,
+                    fontSize = 16.sp,
                     fontStyle = FontStyle.Normal,
                     fontWeight = FontWeight.SemiBold,
                 )
@@ -74,38 +81,83 @@ fun AnimeItem(
                     color = Color(0xFF797979)
                 ),
                 modifier = Modifier
-                    .padding(vertical = 4.dp)
+                    .padding(vertical = 6.dp)
             )
 
             // No. of Episodes
             Text(
                 text = "No. of episodes: ${anime.episodes ?: "?"}",
                 style = TextStyle(
-                    fontSize = 15.sp,
+                    fontSize = 14.sp,
                     fontStyle = FontStyle.Normal,
                     fontWeight = FontWeight.Normal,
                 ),
                 modifier = Modifier
-                    .padding(vertical = 4.dp)
+                    .padding(vertical = 6.dp)
             )
 
             // Score
-            Row {
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(vertical = 4.dp),
+            ) {
                 Icon(
                     imageVector = Icons.Filled.Star,
                     contentDescription = "Star",
                     tint = Color(0xFFFFC107), // Material yellow
-                    modifier = Modifier.padding(end = 4.dp)
+                    modifier = Modifier
+                        .padding(end = 4.dp)
+                        .align(Alignment.CenterVertically)
+                        .size(18.dp),
                 )
                 Text(
-                    text = "Score: ${anime.score} (${anime.scored_by} users)",
+                    buildAnnotatedString {
+                        withStyle(
+                            style = SpanStyle(
+                                color = Color.Blue,
+                                fontWeight = FontWeight.Bold,
+                                fontSize = 14.sp
+                            )
+                        ) {
+                            append("${anime.score}")
+                        }
+
+                        withStyle(
+                            style = SpanStyle(
+                                color = Color(0xFF797979),
+                                fontSize = 14.sp
+                            )
+                        ) {
+                            append(" by ")
+                        }
+
+                        val usersK = anime.scored_by?.let {
+                            if(it >= 1000) {
+                                "${anime.scored_by / 1000}k"
+                            } else {
+                                anime.scored_by.toString()
+                            }
+                        }
+
+                        withStyle(
+                            style = SpanStyle(
+                                color = Color.Black,
+                                fontSize = 14.sp
+                            )
+                        ) {
+                            append("$usersK users")
+                        }
+                    },
                     style = TextStyle(
-                        fontSize = 15.sp,
+                        fontSize = 14.sp,
                         fontStyle = FontStyle.Normal,
                         fontWeight = FontWeight.Normal,
                     ),
                     modifier = Modifier
-                        .padding(vertical = 4.dp)
+                        .padding(bottom = 6.dp)
+                        .align(Alignment.CenterVertically)
                 )
             }
         }
