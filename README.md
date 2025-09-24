@@ -7,7 +7,7 @@ BentoStream is an Android app that allows users to browse popular anime series, 
 ## 📱 App Demo
 
 <p align="center">
-  <img src="media/BentoStream_app_demo.gif" width="300" />
+  <img src="media/BentoStream_app_demo.mp4" width="300" />
 </p>
 
 ## Features
@@ -26,13 +26,13 @@ BentoStream is an Android app that allows users to browse popular anime series, 
 ## Screenshots
 
 ### ➤ Home Page
-<img src="media/home.png" width="300"/>
+<img src="media/home.jpg" width="300"/>
 
 ### ➤ Details Page (Anime Details + Synopsis)
-<img src="media/synopsis_page.png" width="300"/>
+<img src="media/synopsis.jpg" width="300"/>
 
 ### ➤ Trailer Section
-<img src="media/trailer.png" width="300"/>
+<img src="media/trailer.jpg" width="300"/>
 
 ---
 
