@@ -41,4 +41,4 @@ BentoStream is an Android app that allows users to browse popular anime series, 
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/yourusername/bentostream.git
+git clone https://github.com/sakshichauhan06/bentostream.git
